@@ -1,0 +1,31 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type='text/javascript'>
+    var users = {{ users | safe }};
+</script>
+
+<div id="app">
+[[message]]
+
+    <ul>
+      <li v-for="user in users">
+        <a v-bind:href="person.url">[[ users.first_name ]]</a> <button v-on:click="greet(users.first_name)">hey</button>
+      </li>
+    </ul>
+
+</div>
+
+<script>
+var app = new Vue({
+  delimiters: ['[[', ']]'],
+  el: '#app',
+  data: {
+      message: 'Hello Vue!',
+      users: users
+  },
+  methods: {
+      greet: function(name) {
+          console.log('Hello from ' + name + '!')
+      }
+  }
+});
+</script>
